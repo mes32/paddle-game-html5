@@ -1,11 +1,19 @@
 html, body {
+    margin: 0;
+    padding: 0;
     background-color: black;
 }
 
-h1 {
+p {
     color: darkslategrey;
     font-family: 'Courier New', Courier, monospace;
     font-weight: normal;
     font-size: 12pt;
     text-align: center;
+}
+
+#game-canvas {
+    display: block;
+    margin: 8px auto 0 auto;
+    border: 1px solid ghostwhite;
 }
