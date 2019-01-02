@@ -1,4 +1,3 @@
-Create a Rect class to handle collision detection
 Create a Vector class to handle movement of game assets
 Add a Brick class
 Have the Ball bounce off the Bricks

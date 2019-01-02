@@ -9,6 +9,10 @@ class Paddle {
         this.height = 4;
         this.width = 80;
 
+        const rectX = this.x - Math.round(this.width / 2.0);
+        this.hitbox = new Rect(rectX, this.y, this.width, this.height);
+        // this.image = new ImageRectangle();
+
         this.speed = 10;
         this.moveX = 0;
         this.moveY = 0;
@@ -23,6 +27,8 @@ class Paddle {
         this.previousY = this.y;
         this.x += this.moveX;
         this.y += this.moveY;
+
+        this.hitbox.move(this.moveX, this.moveY);
 
         // Stop at edges
         if (this.x - Math.round(this.width / 2.0) <= 0) {

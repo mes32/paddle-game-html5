@@ -10,6 +10,11 @@ class Ball {
         this.radius = 4;
         this.moveX = 10;
         this.moveY = 10;
+
+        const rectX = Math.round(this.x - this.radius);
+        const rectY = Math.round(this.y - this.radius);
+        const rectSpan = 2 * this.radius;
+        this.hitbox = new Rect(rectX, rectY, rectSpan, rectSpan);
     }
 
     move() {
@@ -17,6 +22,8 @@ class Ball {
         this.previousY = this.y;
         this.x += this.moveX;
         this.y += this.moveY;
+
+        this.hitbox.move(this.moveX, this.moveY);
 
         // Bounce off wall
         if (this.x - this.radius <= 0 || this.x + this.radius >= 480) {
@@ -27,24 +34,7 @@ class Ball {
         }
 
         // Bounce off paddle
-        const ballX = this.x - this.radius;
-        const ballY = this.y - this.radius;
-        const ballWidthHeight = this.radius * 2;
-        const paddleX = this.paddle.x - Math.round(this.paddle.width / 2.0);
-        const paddleY = this.paddle.y;
-        const paddleWidth = this.paddle.width;
-        const paddleHeight = this.paddle.height;
-
-        // Note:
-        // ball left-edge < paddle right-edge &&
-        // ball right-edge > paddle left-edge &&
-        // ball top-edge < paddle bottom-edge &&
-        // ball bottom-edge > paddle top-edge
-        if (ballX < paddleX + paddleWidth &&
-            ballX + ballWidthHeight > paddleX &&
-            ballY < paddleY + paddleHeight &&
-            ballY + ballWidthHeight > paddleY
-        ) {
+        if (this.colision(this.paddle)) {
             this.moveY *= -1;
         }
     }
@@ -64,5 +54,9 @@ class Ball {
         // this.context.strokeStyle = 'black'
         this.context.fill();
         this.context.stroke();
+    }
+
+    colision(paddle) {
+        return this.hitbox.colision(paddle.hitbox);
     }
 }
