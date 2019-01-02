@@ -1,42 +1,59 @@
-function startGame(canvas) {
-    const UPDATE_INTERVAL = 40;
-    const WIDTH = canvas.width;
-    const HEIGHT = canvas.height;
+class Ball {
+    constructor(x, y, context) {
+        this.x = x;
+        this.y = y;
+        this.context = context;
 
-    const context = canvas.getContext('2d');
-    context.fillStyle = 'darkslategrey';
-    context.font = '30px Courier New';
+        this.previousX = x;
+        this.previousY = y;
+        this.radius = 4;
+        this.moveX = 10;
+        this.moveY = 10;
+    }
 
-    let x = 50;
-    let y = 50;
-    let moveX = 10;
-    let moveY = -10;
+    move() {
+        this.previousX = this.x;
+        this.previousY = this.y;
+        this.x += this.moveX;
+        this.y += this.moveY;
 
-    setInterval(updateGame, UPDATE_INTERVAL);
-    function updateGame() {
-        context.clearRect(x, y - 30, 300, 40);
-        x += moveX;
-        y += moveY;
-        context.fillText('Hello world!', x, y);
-
-        if (x <= 0 || x + 200 >= WIDTH) {
-            moveX *= -1;
+        // Bounce
+        if (this.x - this.radius <= 0 || this.x + this.radius >= 480) {
+            this.moveX *= -1;
         }
-        if (y - 30 <= 0 || y >= HEIGHT) {
-            moveY *= -1;
+        if (this.y - this.radius <= 0 || this.y + this.radius >= 600) {
+            this.moveY *= -1;
         }
     }
 
-    // let centerX = canvas.width / 2;
-    // let centerY = canvas.height / 2;
-    // let radius = 70;
+    clear() {
+        const x = this.previousX - this.radius;
+        const y = this.previousY - this.radius;
+        const span = 2 * this.radius;
+        this.context.clearRect(x, y, span, span);
+    }
 
-    // context.beginPath();
-    // context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-    // context.fillStyle = 'green';
-    // context.fill();
-    // context.lineWidth = 5;
-    // context.strokeStyle = '#003300';
-    // context.stroke();
+    draw() {
+        this.context.beginPath();
+        this.context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+        this.context.fillStyle = 'ghostwhite';
+        this.context.fill();
+        this.context.stroke();
+    }
+}
 
+function startGame(canvas) {
+    const UPDATE_INTERVAL = 40;
+    const context = canvas.getContext('2d');
+
+    let x = 50;
+    let y = 500;
+    let ball = new Ball(x, y, context);
+
+    setInterval(updateGame, UPDATE_INTERVAL);
+    function updateGame() {
+        ball.move();
+        ball.clear();
+        ball.draw();
+    }
 }
