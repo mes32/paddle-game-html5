@@ -1,19 +1,17 @@
 class Paddle {
     constructor(x, y, context) {
-        this.x = x;
-        this.y = y;
+        const HEIGHT = 4;
+        const WIDTH = 80;
+        const COLOR = 'ghostwhite';
+        
+        this.speed = 10;
         this.context = context;
 
-        this.previousX = x;
-        this.previousY = y;
-        this.height = 4;
-        this.width = 80;
+        const leftX = x - Math.round(WIDTH / 2.0);
 
-        const rectX = this.x - Math.round(this.width / 2.0);
-        this.hitbox = new Rect(rectX, this.y, this.width, this.height);
-        // this.image = new ImageRectangle();
+        this.hitbox = new Rect(leftX, y, WIDTH, HEIGHT);
+        this.image = new ImageRectangle(leftX, y, WIDTH, HEIGHT, COLOR, context);
 
-        this.speed = 10;
         this.moveX = 0;
         this.moveY = 0;
         this.movingRight = false;
@@ -23,59 +21,32 @@ class Paddle {
     }
 
     move() {
-        this.previousX = this.x;
-        this.previousY = this.y;
-        this.x += this.moveX;
-        this.y += this.moveY;
-
         this.hitbox.move(this.moveX, this.moveY);
+        this.image.move(this.moveX, this.moveY);
 
         // Stop at edges
-        if (this.x - Math.round(this.width / 2.0) <= 0) {
-            this.moveX = 0;
-            this.x = Math.round(this.width / 2.0);
-        } else if (this.x + Math.round(this.width / 2.0) >= 480) {
-            this.moveX = 0;
-            this.x = 480 - Math.round(this.width / 2.0);
-        }
+        // if (this.hitbox.x < 0) {
+        //     console.log('over left edge');
+        //     this.moveX = 0;
+        //     this.movingLeft = false;
+
+        //     this.hitbox.set(0, this.hitbox.y);
+        //     this.image.set(0, this.image.y);
+        // } else if (this.hitbox.x + this.hitbox.width > 480) {
+        //     this.moveX = 0;
+        //     this.movingRight = false;
+
+        //     this.hitbox.set(480 - Math.round(this.hitbox.width / 2.0), this.hitbox.y);
+        //     this.image.set(480 - Math.round(this.image.width / 2.0), this.image.y);
+        // }
     }
 
     clear() {
-        // const x = this.previousX - ((this.width + this.height) / 2.0);
-        // const y = this.previousY - (this.height / 2.0);
-        // this.context.clearRect(x, y, this.height, this.width + (2 * this.height));
-
-        const x = Math.round(this.previousX - this.width / 2.0);
-        const y = this.previousY;
-        this.context.clearRect(x, y, this.width, this.height);
+        this.image.clearPrevious();
     }
 
     draw() {
-        // const x = this.x - this.width / 2.0;
-        // const y = this.y - this.height / 2.0;
-        // this.context.fillStyle = 'ghostwhite';
-
-        // // Left-end bezel circle
-        // this.context.beginPath();
-        // this.context.arc(x, this.y, this.height / 2.0, 0, 2 * Math.PI, false);
-        // this.context.fill();
-        // this.context.stroke();
-
-        // // Right-end bezel circle
-        // this.context.beginPath();
-        // this.context.arc(this.x + this.width / 2.0, this.y, this.height / 2.0, 0, 2 * Math.PI, false);
-        // this.context.fill();
-        // this.context.stroke();
-
-        // // Rectangle
-        // this.context.fillRect(x, y, this.width, this.height);
-
-        // Simple rectangle for now
-        // Note: const x declaration above has a bug
-        const x = Math.round(this.x - this.width / 2.0);
-        const y = this.y;
-        this.context.fillStyle = 'ghostwhite';
-        this.context.fillRect(x, y, this.width, this.height);
+        this.image.draw();
     }
 
     pressedRight() {

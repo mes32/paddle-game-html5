@@ -6,6 +6,15 @@ class Rect {
         this.height = height;
     }
 
+    copy() {
+        return new Rect(this.x, this.y, this.width, this.height);
+    }
+
+    set(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+
     move(deltaX, deltaY) {
         this.x += deltaX;
         this.y += deltaY;

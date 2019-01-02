@@ -65,7 +65,3 @@ function initEventListeners(paddle) {
         }
     });
 }
-
-function pressedLeft() {
-    console.log('pressed LEFT');
-}
