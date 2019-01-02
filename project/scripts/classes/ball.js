@@ -35,6 +35,11 @@ class Ball {
         const paddleWidth = this.paddle.width;
         const paddleHeight = this.paddle.height;
 
+        // Note:
+        // ball left-edge < paddle right-edge &&
+        // ball right-edge > paddle left-edge &&
+        // ball top-edge < paddle bottom-edge &&
+        // ball bottom-edge > paddle top-edge
         if (ballX < paddleX + paddleWidth &&
             ballX + ballWidthHeight > paddleX &&
             ballY < paddleY + paddleHeight &&

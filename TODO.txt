@@ -1,0 +1,18 @@
+Allow the user to move the paddle with the arrow keys
+Create a Rect class to handle collision detection
+Create a Vector class to handle movement of game assets
+Add a Brick class
+Have the Ball bounce off the Bricks
+Have the Ball destroy Bricks when they collide
+The Ball exits the gameboard off the bottom-edge (when the Paddle misses it)
+Add some 'english' altering the Ball's bounce vector based on where it hits the Paddle
+Add some 'english' altering the Ball's bounce vector based on the velocity of the Paddle at the time of collision
+Add a mechanic where the player 'serves' the Ball at the start of the game
+Add a score board
+Limit the number of Balls per-game to three
+Add a few different colors of Bricks
+Add different levels with different configurations of Bricks
+Add a level selector drop-down
+Add a new type of Brick that is indestructable
+Add a new type of Brick that takes several hits from the ball an changes color to indicate the number of hits remaining
+Add a sound effect when the Ball bounces off something in the game
