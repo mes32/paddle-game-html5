@@ -3,21 +3,17 @@ class Paddle {
         const HEIGHT = 4;
         const WIDTH = 80;
         const COLOR = 'ghostwhite';
-        
+
         this.speed = 10;
         this.context = context;
 
         const leftX = x - Math.round(WIDTH / 2.0);
-
         this.hitbox = new Rect(leftX, y, WIDTH, HEIGHT);
         this.image = new ImageRectangle(leftX, y, WIDTH, HEIGHT, COLOR, context);
 
         this.moveX = 0;
         this.moveY = 0;
-        this.movingRight = false;
-        this.movingLeft = false;
-        this.queuedRight = false;
-        this.queuedLeft = false;
+        this.controller = new PaddleController(this);
     }
 
     move() {
@@ -47,55 +43,5 @@ class Paddle {
 
     draw() {
         this.image.draw();
-    }
-
-    pressedRight() {
-        if (!this.movingLeft) {
-            this.movingRight = true;
-            this.moveX = this.speed;
-        } else {
-            this.queuedRight = true;
-        }
-    }
-
-    pressedLeft() {
-        if (!this.movingRight) {
-            this.movingLeft = true;
-            this.moveX = -this.speed;
-        } else {
-            this.queuedLeft = true;
-        }
-    }
-
-    pressedSpace() {
-        console.log('paddle pressed SPACE');
-    }
-
-    releasedLeft() {
-        if (this.movingLeft) {
-            if (this.queuedRight) {
-                this.movingRight = true;
-                this.queuedRight = false;
-                this.moveX = this.speed;
-            } else {
-                this.moveX = 0;
-            }
-        }
-        this.movingLeft = false;
-        this.queuedLeft = false;
-    }
-
-    releasedRight() {
-        if (this.movingRight) {
-            if (this.queuedLeft) {
-                this.movingLeft = true;
-                this.queuedLeft = false;
-                this.moveX = -this.speed;
-            } else {
-                this.moveX = 0;
-            }
-        }
-        this.movingRight = false;
-        this.queuedRight = false;
     }
 }

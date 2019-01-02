@@ -10,7 +10,7 @@ function startGame(canvas) {
     let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 20, context);
     let ball = new Ball(x, y, paddle, context);
 
-    initEventListeners(paddle);
+    initEventListeners(paddle.controller);
 
     // for (let block of blocks) {
     //     block.draw();
@@ -39,17 +39,17 @@ function startGame(canvas) {
     }
 }
 
-function initEventListeners(paddle) {
+function initEventListeners(controller) {
     document.addEventListener('keydown', (event) => {
         const keyName = event.key;
         if (keyName === 'ArrowLeft') {
-            paddle.pressedLeft();
+            controller.pressedLeft();
             return;
         } else if (keyName === 'ArrowRight') {
-            paddle.pressedRight();
+            controller.pressedRight();
             return;
         } else if (keyName === ' ') {
-            paddle.pressedSpace();
+            controller.pressedSpace();
             return;
         }
     });
@@ -57,10 +57,10 @@ function initEventListeners(paddle) {
     document.addEventListener('keyup', (event) => {
         const keyName = event.key;
         if (keyName === 'ArrowLeft') {
-            paddle.releasedLeft();
+            controller.releasedLeft();
             return;
         } else if (keyName === 'ArrowRight') {
-            paddle.releasedRight();
+            controller.releasedRight();
             return;
         }
     });
