@@ -21,7 +21,7 @@ class Paddle {
 
         // Stop at edges
         if (this.x - this.width / 2.0 <= 0 || this.x + this.width / 2.0 >= 480) {
-            this.moveX = 0;
+            this.moveX *= -1;
         }
     }
 

@@ -1,7 +1,8 @@
 class Ball {
-    constructor(x, y, context) {
+    constructor(x, y, paddle, context) {
         this.x = x;
         this.y = y;
+        this.paddle = paddle;
         this.context = context;
 
         this.previousX = x;
@@ -17,11 +18,28 @@ class Ball {
         this.x += this.moveX;
         this.y += this.moveY;
 
-        // Bounce
+        // Bounce off wall
         if (this.x - this.radius <= 0 || this.x + this.radius >= 480) {
             this.moveX *= -1;
         }
         if (this.y - this.radius <= 0 || this.y + this.radius >= 600) {
+            this.moveY *= -1;
+        }
+
+        // Bounce off paddle
+        const ballX = this.x - this.radius;
+        const ballY = this.y - this.radius;
+        const ballWidthHeight = this.radius * 2;
+        const paddleX = this.paddle.x - Math.round(this.paddle.width / 2.0);
+        const paddleY = this.paddle.y;
+        const paddleWidth = this.paddle.width;
+        const paddleHeight = this.paddle.height;
+
+        if (ballX < paddleX + paddleWidth &&
+            ballX + ballWidthHeight > paddleX &&
+            ballY < paddleY + paddleHeight &&
+            ballY + ballWidthHeight > paddleY
+        ) {
             this.moveY *= -1;
         }
     }
