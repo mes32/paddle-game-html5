@@ -9,8 +9,13 @@ class Paddle {
         this.height = 4;
         this.width = 80;
 
-        this.moveX = 10;
+        this.speed = 10;
+        this.moveX = 0;
         this.moveY = 0;
+        this.movingRight = false;
+        this.movingLeft = false;
+        this.queuedRight = false;
+        this.queuedLeft = false;
     }
 
     move() {
@@ -20,8 +25,12 @@ class Paddle {
         this.y += this.moveY;
 
         // Stop at edges
-        if (this.x - this.width / 2.0 <= 0 || this.x + this.width / 2.0 >= 480) {
-            this.moveX *= -1;
+        if (this.x - Math.round(this.width / 2.0) <= 0) {
+            this.moveX = 0;
+            this.x = Math.round(this.width / 2.0);
+        } else if (this.x + Math.round(this.width / 2.0) >= 480) {
+            this.moveX = 0;
+            this.x = 480 - Math.round(this.width / 2.0);
         }
     }
 
@@ -61,5 +70,55 @@ class Paddle {
         const y = this.y;
         this.context.fillStyle = 'ghostwhite';
         this.context.fillRect(x, y, this.width, this.height);
+    }
+
+    pressedRight() {
+        if (!this.movingLeft) {
+            this.movingRight = true;
+            this.moveX = this.speed;
+        } else {
+            this.queuedRight = true;
+        }
+    }
+
+    pressedLeft() {
+        if (!this.movingRight) {
+            this.movingLeft = true;
+            this.moveX = -this.speed;
+        } else {
+            this.queuedLeft = true;
+        }
+    }
+
+    pressedSpace() {
+        console.log('paddle pressed SPACE');
+    }
+
+    releasedLeft() {
+        if (this.movingLeft) {
+            if (this.queuedRight) {
+                this.movingRight = true;
+                this.queuedRight = false;
+                this.moveX = this.speed;
+            } else {
+                this.moveX = 0;
+            }
+        }
+        this.movingLeft = false;
+        this.queuedLeft = false;
+    }
+
+    releasedRight() {
+        if (this.movingRight) {
+            if (this.queuedLeft) {
+                this.movingLeft = true;
+                this.queuedLeft = false;
+                this.moveX = -this.speed;
+            } else {
+                this.moveX = 0;
+            }
+        }
+        this.movingRight = false;
+        this.queuedRight = false;
     }
 }

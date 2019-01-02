@@ -43,16 +43,13 @@ function initEventListeners(paddle) {
     document.addEventListener('keydown', (event) => {
         const keyName = event.key;
         if (keyName === 'ArrowLeft') {
-            pressedLeft();
+            paddle.pressedLeft();
             return;
         } else if (keyName === 'ArrowRight') {
-            pressedRight();
+            paddle.pressedRight();
             return;
         } else if (keyName === ' ') {
-            pressedSpace();
-            return;
-        } else {
-            console.log(keyName);
+            paddle.pressedSpace();
             return;
         }
     });
@@ -60,10 +57,10 @@ function initEventListeners(paddle) {
     document.addEventListener('keyup', (event) => {
         const keyName = event.key;
         if (keyName === 'ArrowLeft') {
-            releasedLeft();
+            paddle.releasedLeft();
             return;
         } else if (keyName === 'ArrowRight') {
-            releasedRight();
+            paddle.releasedRight();
             return;
         }
     });
@@ -71,24 +68,4 @@ function initEventListeners(paddle) {
 
 function pressedLeft() {
     console.log('pressed LEFT');
-}
-
-function pressedRight() {
-    console.log('pressed RIGHT');
-}
-
-function pressedLeft() {
-    console.log('pressed LEFT');
-}
-
-function pressedSpace() {
-    console.log('pressed SPACE');
-}
-
-function releasedLeft() {
-    console.log('released LEFT');
-}
-
-function releasedRight() {
-    console.log('released RIGHT');
 }

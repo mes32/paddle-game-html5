@@ -1,4 +1,3 @@
-Allow the user to move the paddle with the arrow keys
 Create a Rect class to handle collision detection
 Create a Vector class to handle movement of game assets
 Add a Brick class
