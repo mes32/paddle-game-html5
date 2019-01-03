@@ -34,7 +34,7 @@ class Ball {
         }
 
         // Bounce off paddle
-        if (this.colision(this.paddle)) {
+        if (this.collision(this.paddle)) {
             this.moveY *= -1;
         }
     }
@@ -56,7 +56,7 @@ class Ball {
         this.context.stroke();
     }
 
-    colision(paddle) {
-        return this.hitbox.colision(paddle.hitbox);
+    collision(paddle) {
+        return this.hitbox.collision(paddle.hitbox);
     }
 }

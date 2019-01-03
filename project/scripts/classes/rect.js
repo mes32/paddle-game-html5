@@ -10,17 +10,17 @@ class Rect {
         return new Rect(this.x, this.y, this.width, this.height);
     }
 
-    set(x, y) {
-        this.x = x;
-        this.y = y;
-    }
+    // set(x, y) {
+    //     this.x = x;
+    //     this.y = y;
+    // }
 
     move(deltaX, deltaY) {
         this.x += deltaX;
         this.y += deltaY;
     }
 
-    colision(rect2) {
+    collision(rect2) {
         if (this.x < rect2.x + rect2.width &&
             this.x + this.width > rect2.x &&
             this.y < rect2.y + rect2.height &&
