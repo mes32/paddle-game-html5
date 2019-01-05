@@ -14,7 +14,7 @@ class Ball {
         const rectX = Math.round(this.x - this.radius);
         const rectY = Math.round(this.y - this.radius);
         const rectSpan = 2 * this.radius;
-        this.hitbox = new Rect(rectX, rectY, rectSpan, rectSpan);
+        this.hitbox = new HitBox(rectX, rectY, rectSpan, rectSpan);
     }
 
     move() {

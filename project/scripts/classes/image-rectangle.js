@@ -1,10 +1,10 @@
 class ImageRectangle {
     constructor(x, y, width, height, color, context) {
-        this.rect = new Rect(x, y, width, height);
+        this.rect = new HitBox(x, y, width, height);
         this.color = color;
         this.context = context;
 
-        this.previousRect = new Rect(x, y, width, height);
+        this.previousRect = new HitBox(x, y, width, height);
     }
 
     set(x, y) {

@@ -1,4 +1,4 @@
-class Rect {
+class HitBox {
     constructor(x, y, width, height) {
         this.x = x;
         this.y = y;
@@ -7,13 +7,8 @@ class Rect {
     }
 
     copy() {
-        return new Rect(this.x, this.y, this.width, this.height);
+        return new HitBox(this.x, this.y, this.width, this.height);
     }
-
-    // set(x, y) {
-    //     this.x = x;
-    //     this.y = y;
-    // }
 
     move(deltaX, deltaY) {
         this.x += deltaX;

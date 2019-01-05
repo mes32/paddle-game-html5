@@ -8,7 +8,7 @@ class Paddle {
         this.context = context;
 
         const leftX = x - Math.round(WIDTH / 2.0);
-        this.hitbox = new Rect(leftX, y, WIDTH, HEIGHT);
+        this.hitbox = new HitBox(leftX, y, WIDTH, HEIGHT);
         this.image = new ImageRectangle(leftX, y, WIDTH, HEIGHT, COLOR, context);
 
         this.moveX = 0;
