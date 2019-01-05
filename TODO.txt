@@ -1,4 +1,11 @@
-Create a Vector class to handle movement of game assets
+Rename Rect to Hitbox
+Simplify Hitbox so that it does not track its own position but uses the position of the associated game entity
+Make Hitbox collision a static method
+Simplify ImageRectangle so that it does not track position
+Create class ImageCircle
+Create a parent class for ImageRectangle and ImageCircle
+Use a posion object for Paddle and Ball {x: -, y: -}?
+Create a Vector class to handle movement of game assets?
 Add a Brick class
 Have the Ball bounce off the Bricks
 Have the Ball destroy Bricks when they collide
