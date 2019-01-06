@@ -10,10 +10,15 @@ class Brick {
 
         this.hitbox = new HitBox(x, y, this.WIDTH, this.HEIGHT);
         this.image = new ImageRectangle(this.WIDTH, this.HEIGHT, this.COLOR, context);
+        this.destroyed = false;
+    }
+
+    destroy() {
+        this.destroyed = true;
     }
 
     isDestroyed() {
-        return false;
+        return this.destroyed;
     }
 
     clear() {

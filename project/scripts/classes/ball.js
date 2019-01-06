@@ -1,8 +1,9 @@
 class Ball {
-    constructor(x, y, paddle, context) {
+    constructor(x, y, paddle, bricks, context) {
         this.x = x;
         this.y = y;
         this.paddle = paddle;
+        this.bricks = bricks;
         this.context = context;
 
         this.previousX = x;
@@ -36,26 +37,21 @@ class Ball {
         if (this.collision(this.paddle)) {
             this.moveY *= -1;
         }
+
+        // Bounce off brick
+        for (let brick of this.bricks) {
+            if (this.collision(brick)) {
+                // brick.destroy();
+                this.moveY *= -1;
+            }
+        }
     }
 
     clear() {
-        // const x = this.previousX - this.radius;
-        // const y = this.previousY - this.radius;
-        // const span = 2 * this.radius;
-        // this.context.clearRect(x, y, span, span);
-
         this.image.clear(this.previousX, this.previousY);
     }
 
     draw() {
-        // this.context.beginPath();
-        // this.context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
-        // this.context.fillStyle = 'ghostwhite';
-        // this.context.linewidth = 0;
-        // // this.context.strokeStyle = 'black'
-        // this.context.fill();
-        // this.context.stroke();
-
         this.image.draw(this.x, this.y);
     }
 
