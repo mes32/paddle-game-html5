@@ -1,11 +1,7 @@
-Create class ImageCircle
-Create a parent class for ImageRectangle and ImageCircle
-Use a posion object for Paddle and Ball {x: -, y: -}?
-Create a Vector class to handle movement of game assets?
-Add a Brick class
 Have the Ball bounce off the Bricks
 Have the Ball destroy Bricks when they collide
 The Ball exits the gameboard off the bottom-edge (when the Paddle misses it)
+Create a MovementVector class to handle movement of the Ball
 Add some 'english' altering the Ball's bounce vector based on where it hits the Paddle
 Add some 'english' altering the Ball's bounce vector based on the velocity of the Paddle at the time of collision
 Add a mechanic where the player 'serves' the Ball at the start of the game

@@ -4,17 +4,27 @@ function startGame(canvas) {
     const UPDATE_INTERVAL = 40;
     const context = canvas.getContext('2d');
 
+    const blockColumns = 12;
+    const blockRows = 6;
+    let blocks = [];
+    for (let i = 0; i < blockColumns; i++) {
+        for (let j = 0; j < blockRows; j++) {
+            const x = i * 40;
+            const y = j * 20;
+            blocks.push(new Brick(x, y, context));
+        }
+    }
+
+    let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 20, context);
     let x = 240;
     let y = 500;
-    // let blocks = [];
-    let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 20, context);
     let ball = new Ball(x, y, paddle, context);
 
     initEventListeners(paddle.controller);
 
-    // for (let block of blocks) {
-    //     block.draw();
-    // }
+    for (let block of blocks) {
+        block.draw();
+    }
     paddle.draw();
     ball.draw();
 
