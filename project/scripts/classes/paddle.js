@@ -5,11 +5,12 @@ class Paddle {
         const COLOR = 'ghostwhite';
 
         this.speed = 10;
+        this.x = x;
+        this.y = y;
         this.context = context;
 
-        const leftX = x - Math.round(WIDTH / 2.0);
-        this.hitbox = new HitBox(leftX, y, WIDTH, HEIGHT);
-        this.image = new ImageRectangle(leftX, y, WIDTH, HEIGHT, COLOR, context);
+        this.hitbox = new HitBox(x, y, WIDTH, HEIGHT);
+        this.image = new ImageRectangle(x, y, WIDTH, HEIGHT, COLOR, context);
 
         this.moveX = 0;
         this.moveY = 0;
@@ -17,7 +18,9 @@ class Paddle {
     }
 
     move() {
-        this.hitbox.move(this.moveX, this.moveY);
+        this.x += this.moveX;
+        this.y += this.moveY;
+        this.hitbox.setPosition(this.x, this.y);
         this.image.move(this.moveX, this.moveY);
 
         // Stop at edges

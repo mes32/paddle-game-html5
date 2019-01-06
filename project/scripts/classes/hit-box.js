@@ -6,20 +6,16 @@ class HitBox {
         this.height = height;
     }
 
-    copy() {
-        return new HitBox(this.x, this.y, this.width, this.height);
+    setPosition(newX, newY) {
+        this.x = newX;
+        this.y = newY;
     }
 
-    move(deltaX, deltaY) {
-        this.x += deltaX;
-        this.y += deltaY;
-    }
-
-    collision(rect2) {
-        if (this.x < rect2.x + rect2.width &&
-            this.x + this.width > rect2.x &&
-            this.y < rect2.y + rect2.height &&
-            this.y + this.height > rect2.y
+    collision(otherHitBox) {
+        if (this.x < otherHitBox.x + otherHitBox.width &&
+            this.x + this.width > otherHitBox.x &&
+            this.y < otherHitBox.y + otherHitBox.height &&
+            this.y + this.height > otherHitBox.y
         ) {
             return true;
         } else {

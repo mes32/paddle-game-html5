@@ -1,4 +1,3 @@
-Simplify Hitbox so that it does not track its own position but uses the position of the associated game entity
 Make Hitbox collision a static method?
 Simplify ImageRectangle so that it does not track position
 Create class ImageCircle

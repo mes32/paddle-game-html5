@@ -23,7 +23,7 @@ class Ball {
         this.x += this.moveX;
         this.y += this.moveY;
 
-        this.hitbox.move(this.moveX, this.moveY);
+        this.hitbox.setPosition(this.x, this.y);
 
         // Bounce off wall
         if (this.x - this.radius <= 0 || this.x + this.radius >= 480) {
