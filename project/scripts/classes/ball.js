@@ -39,9 +39,10 @@ class Ball {
         }
 
         // Bounce off brick
-        for (let brick of this.bricks) {
-            if (this.collision(brick)) {
-                // brick.destroy();
+        for (let i = 0; i < this.bricks.length; i++) {
+            if (this.collision(this.bricks[i])) {
+                // console.log('destroy i:', i);
+                this.bricks[i].destroy();
                 this.moveY *= -1;
             }
         }

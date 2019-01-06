@@ -22,10 +22,12 @@ class Brick {
     }
 
     clear() {
-        this.image.clear(this.previousX, this.previousY);
+        this.image.clear(this.x, this.y);
     }
 
     draw() {
-        this.image.draw(this.x, this.y);
+        if (!this.destroyed) {
+            this.image.draw(this.x, this.y);
+        }
     }
 }

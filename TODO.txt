@@ -1,6 +1,6 @@
-Have the Ball destroy Bricks when they collide
 Have the Ball bounce off the sides of the Bricks
 The Ball exits the gameboard off the bottom-edge (when the Paddle misses it)
+Fix bug where ball can get stuck just off the board
 Move logic for interaction of Ball / Paddle / Bricks outside of the Ball class
 Create a MovementVector class to handle movement of the Ball
 Add some 'english' altering the Ball's bounce vector based on where it hits the Paddle

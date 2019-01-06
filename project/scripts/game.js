@@ -41,6 +41,7 @@ function startGame(canvas) {
 
         for (let i = 0; i < bricks.length; i++) {
             if (bricks[i].isDestroyed()) {
+                console.log('in main game loop updateGame() clear brick');
                 bricks[i].clear();
                 bricks.splice(i, 1);
                 i--;
