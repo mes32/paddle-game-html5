@@ -1,5 +1,3 @@
-Make Hitbox collision a static method?
-Simplify ImageRectangle so that it does not track position
 Create class ImageCircle
 Create a parent class for ImageRectangle and ImageCircle
 Use a posion object for Paddle and Ball {x: -, y: -}?

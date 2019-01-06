@@ -1,16 +1,18 @@
 class Paddle {
     constructor(x, y, context) {
-        const HEIGHT = 4;
-        const WIDTH = 80;
-        const COLOR = 'ghostwhite';
-
-        this.speed = 10;
         this.x = x;
         this.y = y;
         this.context = context;
 
+        this.speed = 10;
+        this.previousX = x;
+        this.previousY = y;
+
+        const HEIGHT = 4;
+        const WIDTH = 80;
+        const COLOR = 'ghostwhite';
         this.hitbox = new HitBox(x, y, WIDTH, HEIGHT);
-        this.image = new ImageRectangle(x, y, WIDTH, HEIGHT, COLOR, context);
+        this.image = new ImageRectangle(WIDTH, HEIGHT, COLOR, context);
 
         this.moveX = 0;
         this.moveY = 0;
@@ -18,10 +20,12 @@ class Paddle {
     }
 
     move() {
+        this.previousX = this.x;
+        this.previousY = this.y;
+
         this.x += this.moveX;
         this.y += this.moveY;
         this.hitbox.setPosition(this.x, this.y);
-        this.image.move(this.moveX, this.moveY);
 
         // Stop at edges
         // if (this.hitbox.x < 0) {
@@ -41,10 +45,10 @@ class Paddle {
     }
 
     clear() {
-        this.image.clearPrevious();
+        this.image.clear(this.previousX, this.previousY);
     }
 
     draw() {
-        this.image.draw();
+        this.image.draw(this.x, this.y);
     }
 }
