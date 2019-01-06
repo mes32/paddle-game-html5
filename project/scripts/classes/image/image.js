@@ -1,4 +1,4 @@
-class ImageRectangle {
+class Image {
     constructor(width, height, color, context) {
         this.width = width;
         this.height = height;
@@ -12,6 +12,5 @@ class ImageRectangle {
 
     draw(x, y) {
         this.context.fillStyle = this.color;
-        this.context.fillRect(x, y, this.width, this.height);
     }
 }

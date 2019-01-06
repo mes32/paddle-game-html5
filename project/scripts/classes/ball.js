@@ -8,28 +8,27 @@ class Ball {
         this.previousX = x;
         this.previousY = y;
         this.radius = 4;
+        this.widthHeight = 2 * this.radius;
         this.moveX = 10;
         this.moveY = 10;
 
-        const rectX = Math.round(this.x - this.radius);
-        const rectY = Math.round(this.y - this.radius);
-        const rectSpan = 2 * this.radius;
-        this.hitbox = new HitBox(rectX, rectY, rectSpan, rectSpan);
+        this.hitbox = new HitBox(this.x, this.x, this.widthHeight, this.widthHeight);
+        this.image = new ImageCircle(this.radius, this.COLOR, this.context);
     }
 
     move() {
         this.previousX = this.x;
         this.previousY = this.y;
+
         this.x += this.moveX;
         this.y += this.moveY;
-
         this.hitbox.setPosition(this.x, this.y);
 
         // Bounce off wall
-        if (this.x - this.radius <= 0 || this.x + this.radius >= 480) {
+        if (this.x <= 0 || this.x + this.widthHeight >= 480) {
             this.moveX *= -1;
         }
-        if (this.y - this.radius <= 0 || this.y + this.radius >= 600) {
+        if (this.y <= 0 || this.y + this.widthHeight >= 600) {
             this.moveY *= -1;
         }
 
@@ -40,20 +39,24 @@ class Ball {
     }
 
     clear() {
-        const x = this.previousX - this.radius;
-        const y = this.previousY - this.radius;
-        const span = 2 * this.radius;
-        this.context.clearRect(x, y, span, span);
+        // const x = this.previousX - this.radius;
+        // const y = this.previousY - this.radius;
+        // const span = 2 * this.radius;
+        // this.context.clearRect(x, y, span, span);
+
+        this.image.clear(this.previousX, this.previousY);
     }
 
     draw() {
-        this.context.beginPath();
-        this.context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
-        this.context.fillStyle = 'ghostwhite';
-        this.context.linewidth = 0;
-        // this.context.strokeStyle = 'black'
-        this.context.fill();
-        this.context.stroke();
+        // this.context.beginPath();
+        // this.context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+        // this.context.fillStyle = 'ghostwhite';
+        // this.context.linewidth = 0;
+        // // this.context.strokeStyle = 'black'
+        // this.context.fill();
+        // this.context.stroke();
+
+        this.image.draw(this.x, this.y);
     }
 
     collision(paddle) {
