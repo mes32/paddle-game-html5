@@ -1,38 +1,44 @@
 class ImageRectangle {
     constructor(x, y, width, height, color, context) {
-        this.rect = new HitBox(x, y, width, height);
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
         this.color = color;
         this.context = context;
 
-        this.previousRect = new HitBox(x, y, width, height);
+        this.previousX = x;
+        this.previousY = y;
     }
 
-    set(x, y) {
+    set(newX, newY) {
         this.clearPrevious();
-        this.previousRect = this.rect.copy();
-        this.x = x;
-        this.y = y;
-        // this.draw();
+        this.previousX = this.x;
+        this.previousY = this.y;
+        this.x = newX;
+        this.y = newY;
     }
 
     move(deltaX, deltaY) {
-        this.previousRect = this.rect.copy();
-        this.rect.move(deltaX, deltaY);
+        this.previousX = this.x;
+        this.previousY = this.y;
+        this.x += deltaX;
+        this.y += deltaY;
     }
 
     clearPrevious() {
-        const x = this.previousRect.x;
-        const y = this.previousRect.y;
-        const width = this.previousRect.width;
-        const height = this.previousRect.height;
+        const x = this.previousX;
+        const y = this.previousY;
+        const width = this.width;
+        const height = this.height;
         this.context.clearRect(x, y, width, height);
     }
 
     draw() {
-        const x = this.rect.x;
-        const y = this.rect.y;
-        const width = this.rect.width;
-        const height = this.rect.height;
+        const x = this.x;
+        const y = this.y;
+        const width = this.width;
+        const height = this.height;
         this.context.fillStyle = this.color;
         this.context.fillRect(x, y, width, height);
     }
