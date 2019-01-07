@@ -1,5 +1,6 @@
-Restructure main game loop
-    Make a class GameEntity as parent-class to (Ball, Paddle, Brick) constructor(x, y, context)
+    Make class GameEntity a parent-class to Paddle
+    Make class GameEntity a parent-class to Brick
+    Make class GameEntity a parent-class to Ball
     Rename function move() as update()
     Replace functions clear() and draw() with render() - layering the render bricks, paddle, ball
     Store the location of game entities (Ball, Paddle, Brick) using Float and round to Int just before rendering to the canvas
