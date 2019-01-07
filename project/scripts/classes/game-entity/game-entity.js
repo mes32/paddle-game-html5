@@ -6,6 +6,8 @@ class GameEntity {
 
         this.previousX;
         this.previousY;
+        this.moveX = 0;
+        this.moveY = 0;
         this.hitbox;
         this.image;
     }
@@ -49,5 +51,9 @@ class GameEntity {
 
     draw() {
         this.image.draw(this.x, this.y);
+    }
+
+    collision(other) {
+        return this.hitbox.collision(other.hitbox);
     }
 }

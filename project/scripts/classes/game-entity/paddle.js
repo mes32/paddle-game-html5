@@ -1,12 +1,9 @@
 class Paddle extends GameEntity{
     constructor(x, y, context) {
         super(x, y, context);
-
         this.hitbox = new HitBox(x, y, Paddle.WIDTH, Paddle.HEIGHT);
         this.image = new ImageRectangle(Paddle.WIDTH, Paddle.HEIGHT, Paddle.COLOR, context);
 
-        this.moveX = 0;
-        this.moveY = 0;
         this.controller = new PaddleController(this);
     }
 

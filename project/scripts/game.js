@@ -33,7 +33,6 @@ function startGame(canvas) {
             if (bricks[i].isDestroyed()) {
                 bricks.splice(i, 1);
                 i--;
-            } else {
             }
         }
         paddle.move();
