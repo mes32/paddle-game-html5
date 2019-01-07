@@ -1,12 +1,17 @@
 Restructure main game loop
-Store the location of game entities (Ball, Paddle, Brick) using Float and round to Int just before rendering to the canvas
-Create a MovementVector class to handle movement of the Ball
-Use MovementVector to model the Ball bouncing off of surfaces with more precision
+    Make a class GameEntity as parent-class to (Ball, Paddle, Brick) constructor(x, y, context)
+    Rename function move() as update()
+    Replace functions clear() and draw() with render() - layering the render bricks, paddle, ball
+    Store the location of game entities (Ball, Paddle, Brick) using Float and round to Int just before rendering to the canvas
+    Create a MovementVector class to handle movement of the Ball
+    Create class MovementPath to model the Ball bouncing off of surfaces with more precision
 
 Fix bug where ball can get stuck just off the gameboard
 Have the Ball bounce off the sides of the Bricks
 The Ball exits the gameboard off the bottom-edge (when the Paddle misses it)
 Move logic for interaction of Ball / Paddle / Bricks outside of the Ball class
+
+Deal with time more correctly/precisely?
 Add some 'english' altering the Ball's bounce vector based on where it hits the Paddle
 Add some 'english' altering the Ball's bounce vector based on the velocity of the Paddle at the time of collision
 Add a mechanic where the player 'serves' the Ball at the start of the game
