@@ -4,33 +4,16 @@ function startGame(canvas) {
     const UPDATE_INTERVAL = 40;
     const context = canvas.getContext('2d');
 
-    const columnsBricks = 12;
-    const rowsBricks = 6;
-    let bricks = [];
-    for (let i = 0; i < columnsBricks; i++) {
-        for (let j = 0; j < rowsBricks; j++) {
-            const x = i * 40;
-            const y = j * 20;
-            bricks.push(new Brick(x, y, context));
-        }
-    }
-
+    let bricks = initBricks(context);
     let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 20, context);
-    let x = 240;
-    let y = 500;
-    let ball = new Ball(x, y, paddle, bricks, context);
+    let ball = new Ball(240, 500, paddle, bricks, context);
 
     initEventListeners(paddle.controller);
 
-    for (let brick of bricks) {
-        brick.draw();
-    }
-    paddle.draw();
-    ball.draw();
-
-    setInterval(updateGame, UPDATE_INTERVAL);
-    function updateGame() {
-        // 1. ProcessInput
+    renderAll();
+    setInterval(iterateGameLoop, UPDATE_INTERVAL);
+    function iterateGameLoop() {
+        // 1. ProcessInput (implicitly handled by event listeners)
         // 2. Update
         //   - move paddle (prevent from moving outside gameboard)
         //   - calculate ball trajectory (account for bouncing off walls, paddle, bricks)
@@ -40,14 +23,21 @@ function startGame(canvas) {
         //   - clear all vector images (for entities that moved or changed)
         //   - draw all vector images (for entites that were previously cleared)
 
+        updateAll();
+        renderAll();
+    }
+
+    function updateAll() {
         paddle.move();
         ball.move();
+    }
 
-        paddle.clear();
-        ball.clear();
-
-        paddle.draw();
-        ball.draw();
+    function renderAll() {
+        // for (let brick of bricks) {
+        //     brick.draw();
+        // }
+        // paddle.draw();
+        // ball.draw();
 
         for (let i = 0; i < bricks.length; i++) {
             if (bricks[i].isDestroyed()) {
@@ -58,7 +48,27 @@ function startGame(canvas) {
                 bricks[i].draw();
             }
         }
+
+        paddle.clear();
+        paddle.draw();
+
+        ball.clear();
+        ball.draw();
     }
+}
+
+function initBricks(context) {
+    const columnsBricks = 12;
+    const rowsBricks = 6;
+    let bricks = [];
+    for (let i = 0; i < columnsBricks; i++) {
+        for (let j = 0; j < rowsBricks; j++) {
+            const x = i * 40;
+            const y = j * 20;
+            bricks.push(new Brick(x, y, context));
+        }
+    }
+    return bricks;
 }
 
 function initEventListeners(controller) {
