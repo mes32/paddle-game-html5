@@ -11,7 +11,7 @@ class PaddleController {
     pressedRight() {
         if (!this.movingLeft) {
             this.movingRight = true;
-            this.paddle.moveX = this.paddle.SPEED;
+            this.paddle.moveX = Paddle.SPEED;
         } else {
             this.queuedRight = true;
         }
@@ -20,7 +20,7 @@ class PaddleController {
     pressedLeft() {
         if (!this.movingRight) {
             this.movingLeft = true;
-            this.paddle.moveX = -this.paddle.SPEED;
+            this.paddle.moveX = -Paddle.SPEED;
         } else {
             this.queuedLeft = true;
         }
@@ -35,7 +35,7 @@ class PaddleController {
             if (this.queuedRight) {
                 this.movingRight = true;
                 this.queuedRight = false;
-                this.paddle.moveX = this.paddle.SPEED;
+                this.paddle.moveX = Paddle.SPEED;
             } else {
                 this.paddle.moveX = 0;
             }
@@ -49,7 +49,7 @@ class PaddleController {
             if (this.queuedLeft) {
                 this.movingLeft = true;
                 this.queuedLeft = false;
-                this.paddle.moveX = -this.paddle.SPEED;
+                this.paddle.moveX = -Paddle.SPEED;
             } else {
                 this.paddle.moveX = 0;
             }

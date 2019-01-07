@@ -5,7 +5,8 @@ function startGame(canvas) {
     const context = canvas.getContext('2d');
 
     let bricks = initBricks(context);
-    let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 20, context);
+    // let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 20, context);
+    let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 40, context);
     let ball = new Ball(240, 500, paddle, bricks, context);
 
     initEventListeners(paddle.controller);
