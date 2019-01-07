@@ -28,14 +28,10 @@ class Brick extends GameEntity {
         return this.destroyed;
     }
 
-    clear() {
+    render() {
         if (this.destroyed) {
             super.clear();
-        }
-    }
-
-    draw() {
-        if (!this.destroyed) {
+        } else {
             super.draw();
         }
     }

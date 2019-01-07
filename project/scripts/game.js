@@ -22,8 +22,8 @@ function startGame(canvas) {
         //   - update status of bricks hit by ball
         //   - move ball
         // 3. Render
-        //   - clear all vector images (for entities that moved or changed)
-        //   - draw all vector images (for entites that were previously cleared)
+        //   - clear all vector images
+        //   - draw all vector images
 
         updateAll();
         renderAll();
@@ -42,13 +42,10 @@ function startGame(canvas) {
 
     function renderAll() {
         for (let brick of bricks) {
-            brick.clear();
-            brick.draw();
+            brick.render();
         }
-        paddle.clear();
-        paddle.draw();
-        ball.clear();
-        ball.draw();
+        paddle.render();
+        ball.render();
     }
 }
 

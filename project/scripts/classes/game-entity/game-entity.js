@@ -38,7 +38,8 @@ class GameEntity {
     }
 
     render() {
-
+        this.clear();
+        this.draw();
     }
 
     clear() {

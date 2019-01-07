@@ -1,4 +1,3 @@
-    Replace functions clear() and draw() with render() - layering the render bricks, paddle, ball
     Store the location of game entities (Ball, Paddle, Brick) using Float and round to Int just before rendering to the canvas
     Create a MovementVector class to handle movement of the Ball
     Create class MovementPath to model the Ball bouncing off of surfaces with more precision
