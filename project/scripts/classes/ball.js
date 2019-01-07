@@ -26,10 +26,28 @@ class Ball {
         this.hitbox.setPosition(this.x, this.y);
 
         // Bounce off wall
-        if (this.x <= 0 || this.x + this.widthHeight >= 480) {
+        // if (this.x <= 0 && this.previousX > 0) {
+        //     this.moveX *= -1;
+        // } else if (this.x + this.widthHeight >= 480 && this.previousX + this.widthHeight < 480) {
+        //     this.moveX *= -1;
+        // }
+        // if (this.y <= 0 && this.previousY > 0) {
+        //     this.moveY *= -1;
+        // } else if (this.y + this.widthHeight >= 600 && this.previousY + this.widthHeight < 600) {
+        //     this.moveY *= -1;
+        // }
+
+        // Bounce off wall
+        // Note: This is likely an incomplete way to handle this
+        if (this.x <= 0) {
+            this.moveX *= -1;
+        } else if (this.x + this.widthHeight >= 480) {
             this.moveX *= -1;
         }
-        if (this.y <= 0 || this.y + this.widthHeight >= 600) {
+
+        if (this.y <= 0) {
+            this.moveY *= -1;
+        } else if (this.y + this.widthHeight >= 600) {
             this.moveY *= -1;
         }
 
@@ -41,7 +59,6 @@ class Ball {
         // Bounce off brick
         for (let i = 0; i < this.bricks.length; i++) {
             if (this.collision(this.bricks[i])) {
-                // console.log('destroy i:', i);
                 this.bricks[i].destroy();
                 this.moveY *= -1;
             }

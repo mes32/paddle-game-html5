@@ -30,6 +30,16 @@ function startGame(canvas) {
 
     setInterval(updateGame, UPDATE_INTERVAL);
     function updateGame() {
+        // 1. ProcessInput
+        // 2. Update
+        //   - move paddle (prevent from moving outside gameboard)
+        //   - calculate ball trajectory (account for bouncing off walls, paddle, bricks)
+        //   - update status of bricks hit by ball
+        //   - move ball
+        // 3. Render
+        //   - clear all vector images (for entities that moved or changed)
+        //   - draw all vector images (for entites that were previously cleared)
+
         paddle.move();
         ball.move();
 
@@ -41,7 +51,6 @@ function startGame(canvas) {
 
         for (let i = 0; i < bricks.length; i++) {
             if (bricks[i].isDestroyed()) {
-                console.log('in main game loop updateGame() clear brick');
                 bricks[i].clear();
                 bricks.splice(i, 1);
                 i--;
