@@ -29,30 +29,24 @@ function startGame(canvas) {
     }
 
     function updateAll() {
+        for (let i = 0; i < bricks.length; i++) {
+            if (bricks[i].isDestroyed()) {
+                bricks.splice(i, 1);
+                i--;
+            } else {
+            }
+        }
         paddle.move();
         ball.move();
     }
 
     function renderAll() {
-        // for (let brick of bricks) {
-        //     brick.draw();
-        // }
-        // paddle.draw();
-        // ball.draw();
-
-        for (let i = 0; i < bricks.length; i++) {
-            if (bricks[i].isDestroyed()) {
-                bricks[i].clear();
-                bricks.splice(i, 1);
-                i--;
-            } else {
-                bricks[i].draw();
-            }
+        for (let brick of bricks) {
+            brick.clear();
+            brick.draw();
         }
-
         paddle.clear();
         paddle.draw();
-
         ball.clear();
         ball.draw();
     }
