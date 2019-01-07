@@ -3,8 +3,6 @@ class Paddle extends GameEntity{
         super(x, y, context);
         this.hitbox = new HitBox(x, y, Paddle.WIDTH, Paddle.HEIGHT);
         this.image = new ImageRectangle(Paddle.WIDTH, Paddle.HEIGHT, Paddle.COLOR, context);
-
-        this.controller = new PaddleController(this);
     }
 
     static get HEIGHT() {

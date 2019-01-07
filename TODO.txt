@@ -3,7 +3,6 @@
     Create a MovementVector class to handle movement of the Ball
     Create class MovementPath to model the Ball bouncing off of surfaces with more precision
 
-PaddleController should update/manipulate Paddle without being a property of it
 Fix bug where ball can get stuck just off the gameboard
 Have the Ball bounce off the sides of the Bricks
 The Ball exits the gameboard off the bottom-edge (when the Paddle misses it)

@@ -9,7 +9,8 @@ function startGame(canvas) {
     let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 40, context);
     let ball = new Ball(240, 500, paddle, bricks, context);
 
-    initEventListeners(paddle.controller);
+    let controller = new PaddleController(paddle);
+    initEventListeners(controller);
 
     renderAll();
     setInterval(iterateGameLoop, UPDATE_INTERVAL);
