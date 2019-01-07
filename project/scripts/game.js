@@ -35,8 +35,8 @@ function startGame(canvas) {
                 i--;
             }
         }
-        paddle.move();
-        ball.move();
+        paddle.update();
+        ball.update();
     }
 
     function renderAll() {

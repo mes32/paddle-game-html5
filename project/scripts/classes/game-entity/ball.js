@@ -18,8 +18,8 @@ class Ball extends GameEntity {
         return 2 * Ball.RADIUS;
     }
 
-    move() {
-        super.move();
+    update() {
+        super.update();
 
         // Bounce off wall
         // if (this.x <= 0 && this.previousX > 0) {

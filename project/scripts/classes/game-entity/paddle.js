@@ -23,8 +23,8 @@ class Paddle extends GameEntity{
         return 10;
     }
 
-    move() {
-        super.move();
+    update() {
+        super.update();
         
         // Stop at edges
         if (this.x < 0) {

@@ -25,14 +25,6 @@ class GameEntity {
     }
 
     update() {
-
-    }
-
-    render() {
-
-    }
-
-    move() {
         // Log previous position
         this.previousX = this.x;
         this.previousY = this.y;
@@ -43,6 +35,10 @@ class GameEntity {
 
         // Update hitbox
         this.hitbox.setPosition(this.x, this.y);
+    }
+
+    render() {
+
     }
 
     clear() {
