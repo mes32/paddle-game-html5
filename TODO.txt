@@ -1,9 +1,10 @@
-    Store the location of game entities (Ball, Paddle, Brick) using Float and round to Int just before rendering to the canvas
-    Create a MovementVector class to handle movement of the Ball
-    Create class MovementPath to model the Ball bouncing off of surfaces with more precision
 
-Fix bug where ball can get stuck just off the gameboard
-Have the Ball bounce off the sides of the Bricks
+Pass 'canvas' to GameEntities rather than 'context'. Then have them derive 'context' from 'canvas'.
+Create a MovementVector class to handle movement of the Ball
+Create class MovementPath to model the Ball bouncing off of surfaces with more precision
+
+- Fix bug where ball can get stuck just off the gameboard
+- Have the Ball bounce off the sides of the Bricks
 The Ball exits the gameboard off the bottom-edge (when the Paddle misses it)
 Move logic for interaction of Ball / Paddle / Bricks outside of the Ball class
 

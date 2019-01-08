@@ -6,13 +6,13 @@ function startGame(canvas) {
 
     let bricks = initBricks(context);
     // let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 20, context);
-    let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 40, context);
+    let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 25, context);
     let ball = new Ball(240, 500, paddle, bricks, context);
 
     let controller = new PaddleController(paddle);
     initEventListeners(controller);
 
-    renderAll();
+    renderAll(bricks, paddle, ball);
     setInterval(iterateGameLoop, UPDATE_INTERVAL);
     function iterateGameLoop() {
         // 1. ProcessInput (implicitly handled by event listeners)
@@ -25,28 +25,28 @@ function startGame(canvas) {
         //   - clear all vector images
         //   - draw all vector images
 
-        updateAll();
-        renderAll();
+        updateAll(bricks, paddle, ball);
+        renderAll(bricks, paddle, ball);
     }
+}
 
-    function updateAll() {
-        for (let i = 0; i < bricks.length; i++) {
-            if (bricks[i].isDestroyed()) {
-                bricks.splice(i, 1);
-                i--;
-            }
-        }
-        paddle.update();
-        ball.update();
+function renderAll(bricks, paddle, ball) {
+    for (let brick of bricks) {
+        brick.render();
     }
+    paddle.render();
+    ball.render();
+}
 
-    function renderAll() {
-        for (let brick of bricks) {
-            brick.render();
+function updateAll(bricks, paddle, ball) {
+    for (let i = 0; i < bricks.length; i++) {
+        if (bricks[i].isDestroyed()) {
+            bricks.splice(i, 1);
+            i--;
         }
-        paddle.render();
-        ball.render();
     }
+    paddle.update();
+    ball.update();
 }
 
 function initBricks(context) {
