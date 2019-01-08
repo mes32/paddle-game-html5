@@ -1,5 +1,3 @@
-
-Pass 'canvas' to GameEntities rather than 'context'. Then have them derive 'context' from 'canvas'.
 Create a MovementVector class to handle movement of the Ball
 Create class MovementPath to model the Ball bouncing off of surfaces with more precision
 

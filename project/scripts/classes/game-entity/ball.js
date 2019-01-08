@@ -1,6 +1,6 @@
 class Ball extends GameEntity {
-    constructor(x, y, paddle, bricks, context) {
-        super(x, y, context);
+    constructor(x, y, paddle, bricks, canvas) {
+        super(x, y, canvas);
         this.moveX = 10;
         this.moveY = 10;
         this.paddle = paddle;
@@ -37,13 +37,13 @@ class Ball extends GameEntity {
         // Note: This is likely an incomplete way to handle this
         if (this.x <= 0) {
             this.moveX *= -1;
-        } else if (this.x + Ball.DIAMETER >= 480) {
+        } else if (this.x + Ball.DIAMETER >= this.canvas.width) {
             this.moveX *= -1;
         }
 
         if (this.y <= 0) {
             this.moveY *= -1;
-        } else if (this.y + Ball.DIAMETER >= 600) {
+        } else if (this.y + Ball.DIAMETER >= this.canvas.height) {
             this.moveY *= -1;
         }
 

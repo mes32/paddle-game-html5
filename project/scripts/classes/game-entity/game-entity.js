@@ -1,9 +1,10 @@
 class GameEntity {
-    constructor(x, y, context) {
+    constructor(x, y, canvas) {
         this.x = x;
         this.y = y;
-        this.context = context;
+        this.canvas = canvas;
 
+        this.context = canvas.getContext('2d')
         this.previousX;
         this.previousY;
         this.moveX = 0;

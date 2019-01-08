@@ -1,11 +1,11 @@
 class Brick extends GameEntity {
-    constructor(x, y, context) {
-        super(x, y, context);
+    constructor(x, y, canvas) {
+        super(x, y, canvas);
         this.previousX = x;
         this.previousY = y;
         this.destroyed = false;
         this.hitbox = new HitBox(x, y, Brick.WIDTH, Brick.HEIGHT);
-        this.image = new ImageRectangle(Brick.WIDTH - 1, Brick.HEIGHT - 1, Brick.COLOR, context);
+        this.image = new ImageRectangle(Brick.WIDTH - 1, Brick.HEIGHT - 1, Brick.COLOR, this.context);
     }
 
     static get HEIGHT() {

@@ -2,12 +2,12 @@ function startGame(canvas) {
     const HEIGHT = canvas.height;
     const WIDTH = canvas.width;
     const UPDATE_INTERVAL = 40;
-    const context = canvas.getContext('2d');
+    // const context = canvas.getContext('2d');
 
-    let bricks = initBricks(context);
+    let bricks = initBricks(canvas);
     // let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 20, context);
-    let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 25, context);
-    let ball = new Ball(240, 500, paddle, bricks, context);
+    let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 25, canvas);
+    let ball = new Ball(240, 500, paddle, bricks, canvas);
 
     let controller = new PaddleController(paddle);
     initEventListeners(controller);
