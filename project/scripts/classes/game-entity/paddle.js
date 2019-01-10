@@ -1,6 +1,7 @@
 class Paddle extends GameEntity{
     constructor(x, y, canvas) {
         super(x, y, canvas);
+        this.vector = new MovementVector(1, 0, 0);
         this.hitbox = new HitBox(x, y, Paddle.WIDTH, Paddle.HEIGHT);
         this.image = new ImageRectangle(Paddle.WIDTH, Paddle.HEIGHT, Paddle.COLOR, this.context);
     }
@@ -28,9 +29,11 @@ class Paddle extends GameEntity{
         if (this.x < 0) {
             this.x = 0;
             this.moveX = 0;
+            this.vector.magnitude = 0;
         } else if (this.x + Paddle.WIDTH > this.canvas.width) {
             this.x = this.canvas.width - Paddle.WIDTH;
             this.moveX = 0;
+            this.vector.magnitude = 0;
         }
 
         // Update hitbox

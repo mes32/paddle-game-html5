@@ -7,8 +7,7 @@ class GameEntity {
         this.context = canvas.getContext('2d')
         this.previousX;
         this.previousY;
-        this.moveX = 0;
-        this.moveY = 0;
+        this.vector = new MovementVector(0, 0, 0);
         this.hitbox;
         this.image;
     }
@@ -31,8 +30,8 @@ class GameEntity {
         this.previousY = this.y;
 
         // Update current position
-        this.x += this.moveX;
-        this.y += this.moveY;
+        this.x += this.vector.getX();
+        this.y += this.vector.getY();
 
         // Update hitbox
         this.hitbox.setPosition(this.x, this.y);

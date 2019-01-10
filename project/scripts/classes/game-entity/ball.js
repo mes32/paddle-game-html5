@@ -1,8 +1,7 @@
 class Ball extends GameEntity {
     constructor(x, y, paddle, bricks, canvas) {
         super(x, y, canvas);
-        this.moveX = 10;
-        this.moveY = 10;
+        this.vector = new MovementVector(1, 1, Ball.DEFAULT_SPEED);
         this.paddle = paddle;
         this.bricks = bricks;
 
@@ -16,6 +15,10 @@ class Ball extends GameEntity {
 
     static get DIAMETER() {
         return 2 * Ball.RADIUS;
+    }
+
+    static get DEFAULT_SPEED() {
+        return 10;
     }
 
     update() {
@@ -36,27 +39,27 @@ class Ball extends GameEntity {
         // Bounce off wall
         // Note: This is likely an incomplete way to handle this
         if (this.x <= 0) {
-            this.moveX *= -1;
+            this.vector.flipHorizontal();
         } else if (this.x + Ball.DIAMETER >= this.canvas.width) {
-            this.moveX *= -1;
+            this.vector.flipHorizontal();
         }
 
         if (this.y <= 0) {
-            this.moveY *= -1;
+            this.vector.flipVertical();
         } else if (this.y + Ball.DIAMETER >= this.canvas.height) {
-            this.moveY *= -1;
+            this.vector.flipVertical();
         }
 
         // Bounce off paddle
         if (this.collision(this.paddle)) {
-            this.moveY *= -1;
+            this.vector.flipVertical();
         }
 
-        // Bounce off brick
+        // Bounce off a brick
         for (let i = 0; i < this.bricks.length; i++) {
             if (this.collision(this.bricks[i])) {
                 this.bricks[i].destroy();
-                this.moveY *= -1;
+                this.vector.flipVertical();
             }
         }
     }
