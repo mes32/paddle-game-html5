@@ -24,11 +24,9 @@ class MovementVector {
 
     getX() {
         return this.x * this.magnitude;
-        // return 1;
     }
 
     getY() {
         return this.y * this.magnitude;
-        // return 1;
     }
 }

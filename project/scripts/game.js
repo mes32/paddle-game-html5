@@ -2,11 +2,9 @@ function startGame(canvas) {
     const HEIGHT = canvas.height;
     const WIDTH = canvas.width;
     const UPDATE_INTERVAL = 40;
-    // const context = canvas.getContext('2d');
 
     let bricks = initBricks(canvas);
-    // let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 20, context);
-    let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 25, canvas);
+    let paddle = new Paddle(WIDTH / 2.0, HEIGHT - 20, canvas);
     let ball = new Ball(240, 500, paddle, bricks, canvas);
 
     let controller = new PaddleController(paddle);
@@ -30,23 +28,27 @@ function startGame(canvas) {
     }
 }
 
-function renderAll(bricks, paddle, ball) {
-    for (let brick of bricks) {
-        brick.render();
-    }
-    paddle.render();
-    ball.render();
+function updateAll(bricks, paddle, ball) {
+    removeDestroyed(bricks);
+    paddle.update();
+    ball.update();
 }
 
-function updateAll(bricks, paddle, ball) {
+function removeDestroyed(bricks) {
     for (let i = 0; i < bricks.length; i++) {
         if (bricks[i].isDestroyed()) {
             bricks.splice(i, 1);
             i--;
         }
     }
-    paddle.update();
-    ball.update();
+}
+
+function renderAll(bricks, paddle, ball) {
+    for (let brick of bricks) {
+        brick.render();
+    }
+    paddle.render();
+    ball.render();
 }
 
 function initBricks(context) {
