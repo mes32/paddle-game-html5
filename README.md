@@ -1,6 +1,8 @@
 # paddle-game-html5
 A paddle game in the style of [Breakout](https://en.wikipedia.org/wiki/Breakout_\(video_game\)) or [Arkanoid](https://en.wikipedia.org/wiki/Arkanoid). Uses vanilla JavaScript and runs on a web browser inside of an HTML5 Canvas element.
 
+![](documentation/images/screenshot.png)
+
 ## Technology Stack
 JavaScript, HTML5 Canvas element
 
